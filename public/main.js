@@ -4,6 +4,7 @@ $(function () {
     var socket = io();
 
     function changeMessage(data) {
+        $message.fadeIn("slow").delay(5000).fadeOut("slow")
         $message.text(data.message);
     }
 

@@ -27,11 +27,11 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    if (msg.channel.id == '836496910059044864') {
-    io.sockets.emit('new message', {
-        message: msg.content
-    });
-    }
+    //if (msg.channel.id == '836496910059044864') {
+        io.sockets.emit('new message', {
+            message: msg.content
+        });
+    //}
 });
 
 client.login('ODM2Mjk0NjY3MzU5MjIzODM5.YIb6Gg.HU5XERz8KkiJrZxHVD0-11MtrDM');
