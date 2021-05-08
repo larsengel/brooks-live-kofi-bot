@@ -34,4 +34,4 @@ client.on('message', msg => {
     //}
 });
 
-client.login('ODM2Mjk0NjY3MzU5MjIzODM5.YIb6Gg.HU5XERz8KkiJrZxHVD0-11MtrDM');
+client.login('TokenSmoken');
