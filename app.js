@@ -27,11 +27,11 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    //if (msg.channel.id == '836496910059044864') {
+    if (msg.channel.id == '836496910059044864' && !msg.author.bot) {
         io.sockets.emit('new message', {
             message: msg.content
         });
-    //}
+    }
 });
 
 client.login('TokenSmoken');
