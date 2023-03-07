@@ -1,4 +1,4 @@
-const Discord = require('discord.js');
+const { Client, GatewayIntentBits } = require('discord.js');
 
 // express und http Module importieren. Sie sind dazu da, die HTML-Dateien
 // aus dem Ordner "public" zu veröffentlichen.
@@ -20,18 +20,22 @@ server.listen(port, function () {
 // im Ordner "public" zu finden sind.
 app.use(express.static(__dirname + '/public'));
 
-const client = new Discord.Client();
+const client = new Client({intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent,
+        GatewayIntentBits.GuildMembers,
+    ]});
 
 client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('message', msg => {
+client.on('messageCreate', msg => {
     if (msg.channel.id == '836496910059044864' && !msg.author.bot) {
         io.sockets.emit('new message', {
             message: msg.content
         });
-    }
-});
+    }});
 
 client.login('TokenSmoken');

@@ -14,7 +14,6 @@ $(function () {
     }
 
     socket.on('new message', function (data) {
-        console.log("new message");
         changeMessage(data);
     });
 

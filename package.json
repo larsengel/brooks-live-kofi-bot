@@ -1,0 +1,24 @@
+{
+  "name": "brooks-live-discord-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/larsengel/brooks-live-discord-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/larsengel/brooks-live-discord-bot/issues"
+  },
+  "homepage": "https://github.com/larsengel/brooks-live-discord-bot#readme",
+  "dependencies": {
+    "discord.js": "14.7.1",
+    "express": "4.17.1",
+    "socket.io": "4.0.2"
+  }
+}
