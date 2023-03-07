@@ -1,5 +1,3 @@
-#!/bin/bash
-
-npm run start
+node app.js
 
 pause
