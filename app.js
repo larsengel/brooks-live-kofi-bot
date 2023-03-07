@@ -1,7 +1,7 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 
 const CHANNEL_ID = '1080770971788660777';
-const TOKEN = 'MTA4MjU2OTY0MzY0ODA5NDIxOA.GfZfB4.dpvn2kFLtJyHJ0tr9H0sdi5IMS7l7d7qm3Pt70'
+const TOKEN = 'XYZ'
 // express und http Module importieren. Sie sind dazu da, die HTML-Dateien
 // aus dem Ordner "public" zu veröffentlichen.
 var express = require('express');
