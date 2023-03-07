@@ -1,1 +1,5 @@
 body { background: dimgrey; perspective: 35em; }
+.message {
+    color: white;
+    font-family: "Work Sans";
+}
