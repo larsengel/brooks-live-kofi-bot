@@ -1,5 +1,7 @@
 const { Client, GatewayIntentBits } = require('discord.js');
 
+const CHANNEL_ID = '1080770971788660777';
+const TOKEN = 'MTA4MjU2OTY0MzY0ODA5NDIxOA.GfZfB4.dpvn2kFLtJyHJ0tr9H0sdi5IMS7l7d7qm3Pt70'
 // express und http Module importieren. Sie sind dazu da, die HTML-Dateien
 // aus dem Ordner "public" zu veröffentlichen.
 var express = require('express');
@@ -27,15 +29,29 @@ const client = new Client({intents: [
         GatewayIntentBits.GuildMembers,
     ]});
 
-client.on('ready', () => {
+let messages;
+
+// get messages from history
+client.on('ready', async () => {
     console.log(`Logged in as ${client.user.tag}!`);
+    const channel = await client.channels.cache.get(CHANNEL_ID);
+    messages = await channel.messages.fetch();
+    console.log(`Received ${messages.size} messages`)
 });
 
+// listen to when the client is connected
+io.on("connection", (socket) => {
+    socket.on("cli_connected", (arg) => {
+        console.log('Client connected');
+        io.sockets.emit('msg_loaded', messages);
+    });
+});
+
+// listen to new messages and inform client
 client.on('messageCreate', msg => {
-    if (msg.channel.id == '836496910059044864' && !msg.author.bot) {
-        io.sockets.emit('new message', {
-            message: msg.content
-        });
+    if (msg.channel.id === CHANNEL_ID) {
+        io.sockets.emit('msg_received', msg);
     }});
 
-client.login('TokenSmoken');
+// login to discord with bot
+client.login(TOKEN);

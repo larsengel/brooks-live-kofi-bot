@@ -1,20 +1,33 @@
 $(function () {
-    var $message = $('.message');
+    let $message = $('.message');
 
-    var socket = io();
+    let socket = io();
 
-    function changeMessage(data) {
-        $message.fadeOut(2000).fadeIn(2000);
+    let messageList = [];
 
-        setTimeout(
-            function()
-            {
-                $message.text(data.message);
-                }, 2000);
+    socket.emit('cli_connected');
+
+    function addMessage(msg) {
+        messageList.push(msg)
     }
 
-    socket.on('new message', function (data) {
-        changeMessage(data);
+    socket.on('msg_received', function (msg) {
+        addMessage(msg);
     });
 
+    socket.on('msg_loaded', function(messages) {
+        console.log('loaded')
+        messageList = messages;
+
+        let index = 0;
+
+        setInterval(() => {
+            let msg = messageList[index]
+            $message.text(msg.content)
+            index++;
+            if (index === messages.length) {
+                index = 0;
+            }
+        }, 5000);
+    });
 });
